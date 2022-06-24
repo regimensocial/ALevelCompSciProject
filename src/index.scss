@@ -50,7 +50,7 @@ body {
 }
 
 body {
-    /* background: linear-gradient(270deg, #ff0000, #e9ff00, #2aff00, #00ffd9, #0023ff, #ff00e6); */
+    background: linear-gradient(270deg, #ff0000, #e9ff00, #2aff00, #00ffd9, #0023ff, #ff00e6); 
     background-size: 1200% 1200%;
 
     -webkit-animation: Rainbow 30s ease infinite;
@@ -58,4 +58,21 @@ body {
     animation: Rainbow 30s ease infinite;
 
     display: block;
+}
+
+.genericMenu {
+    font-family: "Segoe UI", sans-serif;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 0 auto;
+
+
+    // vertically centre the menu
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+
 }
