@@ -1,4 +1,4 @@
-import "./index.scss";
+import "./index.css";
 
 // This file will initialise the application
 
@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", // This waits for the document to lo
 
 function initialiseApp(_event: Event): void {
 
-
+    
 
     class Button {
         name: string;
@@ -18,20 +18,11 @@ function initialiseApp(_event: Event): void {
         styling: object;
         enabled: boolean = false;
 
-        generateElement(): HTMLElement {
-            let button: HTMLElement = document.createElement("button");
-            button.innerText = this.text;
-            button.className = "button";
-            button.addEventListener("click", () => { this.func() });
-
-            return button;
-        }
-
         toggle(): void {
             this.enabled = !this.enabled;
         }
 
-        constructor(name: string, text: string, styling: object, enabled: boolean, func: Function) {
+        constructor(name: string, text: string, func: Function, styling: object, enabled: boolean) {
             this.name = name;
             this.text = text;
             this.func = func;
@@ -40,23 +31,20 @@ function initialiseApp(_event: Event): void {
         }
     }
 
-    type PositionedWidget = {
-        x: number;
-        y: number;
-        widget: Button | string;
-    };
-
-
     class Menu {
-        private name: string;
-        private title!: string;
-        private description!: string;
-        private styling!: object;
-        private widgets: (PositionedWidget)[];
-        // widgets: Array<GenericPos | ButtonPos> = [];
+        name: string;
+        title!: string;
+        description!: string;
+        styling!: object;
+        buttons: {
+            button: Button;
+            x: number;
+            y: number;
+        }[] = [];
 
         generateElement(): HTMLElement {
 
+<<<<<<< HEAD
             let menuContainer: HTMLElement = document.createElement('div');
             menuContainer.classList.add("menuContainer");
 
@@ -160,21 +148,20 @@ function initialiseApp(_event: Event): void {
 
             document.querySelector("#menu").appendChild(menuContainer);
 
+=======
+            let menu: HTMLElement = document.createElement("div");
+            menu.innerHTML = this.name;
+>>>>>>> parent of f733047 (got menus started)
             return menu;
-
         }
 
-        constructor(name: string, title: string, description: string, styling: object, widgets: PositionedWidget[]) {
-            this.name = name;
-            this.title = title;
-            this.description = description;
-            this.styling = styling;
-
-            this.widgets = widgets;
+        constructor(name: string) {
+            this.name = "hello";
         }
     }
 
     var menus = {
+<<<<<<< HEAD
         main: new Menu("main", "Main Menu", "This is the main menu", {}, [
             
             {
@@ -193,6 +180,11 @@ function initialiseApp(_event: Event): void {
 
 
 
+=======
+        main: new Menu("Main"),
+    };
+
+>>>>>>> parent of f733047 (got menus started)
     document.querySelector("#menu").appendChild(menus.main.generateElement());
 
 }
