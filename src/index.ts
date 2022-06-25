@@ -175,7 +175,7 @@ function initialiseApp(_event: Event): void {
     }
 
     var menus = {
-        main: new Menu("main", "Main Menu", "This is the main menu", {}, [
+        main: new Menu("main", "Main Menu", "This is the main menu", {}, [ // TODO: add styling, add colspan and rowspan
             
             {
                 x: 1,
