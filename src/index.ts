@@ -45,11 +45,16 @@ function initialiseApp(_event: Event): void {
         generateElement(): HTMLElement {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             let menuContainer: HTMLElement = document.createElement('div');
             menuContainer.classList.add("menuContainer");
 
             let menu: HTMLElement = document.createElement('div');
             menu.classList.add("actualMenu");
+=======
+            let menu: HTMLElement = document.createElement('table');
+            menu.classList.add("genericMenu");
+>>>>>>> parent of 5ac295e (an attempt at flexbox, will revert back)
 
             // create text 
             let title: HTMLElement = document.createElement('div');
@@ -58,8 +63,8 @@ function initialiseApp(_event: Event): void {
             // create description
             let description: HTMLElement = document.createElement('div');
             description.innerText = this.description;
-            menuContainer.appendChild(title);
-            menuContainer.appendChild(description);
+            menu.appendChild(title);
+            menu.appendChild(description);
 
             let positionedWidgets: PositionedWidget[][] = [];
 
@@ -72,31 +77,25 @@ function initialiseApp(_event: Event): void {
 
 
             // find largest X in positionedWidgets
-            console.log(this.widgets)
-
-            const largestX = this.widgets.reduce(function(prev, current) {
-                return (prev.x > current.x) ? prev : current
-            }).x;
+            const largestX = this.widgets.flat().find(e => (Math.max(e.x) || e)).x || 0;
 
             // find largest Y in positionedWidgets
-            const largestY = this.widgets.reduce(function(prev, current) {
-                return (prev.y > current.y) ? prev : current
-            }).y;
+            const largestY = this.widgets.flat().find(e => (Math.max(e.y) || e)).y || 0;
+
 
             console.log([largestX, largestY]);
 
             // loop how many times we need to create a row
             for (let i = 1; i < positionedWidgets.length; i++) {
                 console.log(i)
-                let row: HTMLElement = document.createElement('div');
-                row.classList.add("row");
+                let row: HTMLElement = document.createElement('tr');
 
                 // // loop how many times we need to create a column in the row
 
                 for (let j = 1; j < (largestX + 1); j++) {
 
-                    let cell: HTMLElement = document.createElement('div');
-                    cell.classList.add("column", `x${j}`, `y${i}`);
+                    let cell: HTMLElement = document.createElement('td');
+                    cell.classList.add(`x${j}`, `y${i}`);
                     // if (positionedWidgets[i] && positionedWidgets[i][j]) {
                     //     console.log(i, j)
                     //     let currentWidget = positionedWidgets[i][j].widget;
@@ -130,8 +129,6 @@ function initialiseApp(_event: Event): void {
                             // create div and append text
                             let div: HTMLElement = document.createElement('div');
                             div.innerText = currentWidget;
-                            console.log(position)
-                            console.log(menu)
                             menu.querySelector(position).appendChild(div);
                         }
                     }
@@ -140,13 +137,11 @@ function initialiseApp(_event: Event): void {
             })
 
 
+            
 
 
+            document.querySelector("#menu").appendChild(menu);
 
-            menuContainer.appendChild(menu);
-
-
-            document.querySelector("#menu").appendChild(menuContainer);
 
 =======
             let menu: HTMLElement = document.createElement("div");
@@ -163,21 +158,35 @@ function initialiseApp(_event: Event): void {
     var menus = {
 <<<<<<< HEAD
         main: new Menu("main", "Main Menu", "This is the main menu", {}, [
-            
+            {
+                x: 9,
+                y: 1,
+                widget: "4, 1"
+            },
             {
                 x: 1,
                 y: 1,
-                widget: new Button("start", "Start", {}, true, () => {})
+                widget: "1, 1"
             },
             {
-                x: 2,
-                y: 1,
-                widget: new Button("start", "Start", {}, true, () => {})
-            }
+                x: 3,
+                y: 2,
+                widget: "3, 2"
+            },
+            {
+                x: 9,
+                y: 9,
+                widget: "9, 9"
+            },
+            // {
+            //     x: 1,
+            //     y: 1,
+            //     widget: "Star2tx"
+            // }
         ]),
     };
 
-
+    
 
 
 =======
