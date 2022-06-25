@@ -6,51 +6,50 @@ body {
     width: 100%;
 }
 
-
 @-webkit-keyframes Rainbow {
     0% {
-        background-position: 0% 50%
+        background-position: 0% 50%;
     }
 
     50% {
-        background-position: 100% 50%
+        background-position: 100% 50%;
     }
 
     100% {
-        background-position: 0% 50%
+        background-position: 0% 50%;
     }
 }
 
 @-moz-keyframes Rainbow {
     0% {
-        background-position: 0% 50%
+        background-position: 0% 50%;
     }
 
     50% {
-        background-position: 100% 50%
+        background-position: 100% 50%;
     }
 
     100% {
-        background-position: 0% 50%
+        background-position: 0% 50%;
     }
 }
 
 @keyframes Rainbow {
     0% {
-        background-position: 0% 50%
+        background-position: 0% 50%;
     }
 
     50% {
-        background-position: 100% 50%
+        background-position: 100% 50%;
     }
 
     100% {
-        background-position: 0% 50%
+        background-position: 0% 50%;
     }
 }
 
 body {
-    background: linear-gradient(270deg, #ff0000, #e9ff00, #2aff00, #00ffd9, #0023ff, #ff00e6); 
+    background: linear-gradient(270deg, #ff0000, #e9ff00, #2aff00, #00ffd9, #0023ff, #ff00e6);
     background-size: 1200% 1200%;
 
     -webkit-animation: Rainbow 30s ease infinite;
@@ -60,13 +59,12 @@ body {
     display: block;
 }
 
-.genericMenu {
+#menu {
     font-family: "Segoe UI", sans-serif;
     background-color: white;
     padding: 20px;
     border-radius: 15px;
     margin: 0 auto;
-
 
     // vertically centre the menu
     position: absolute;
@@ -74,5 +72,31 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 
+    .actualMenu {
+        display: flex;
+        flex-direction: column;
+        // justify-content: space-around;
+        align-items: center;
+        flex: 1;
+        flex-grow: 1;
+        .row {
+            display: flex;
+            // flex-grow: 1;
+            // flex-shrink: 1;
+            // flex-basis: 0;
+            // flex: 1;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            flex: 1;
 
+            .column {
+                flex: 1;
+                button {
+                    display: block;
+                    width: 100%;
+                }
+            }
+        }
+    }
 }
