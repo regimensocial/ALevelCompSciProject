@@ -1,4 +1,4 @@
-import "./index.css";
+import "./index.scss";
 
 // This file will initialise the application
 
@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", // This waits for the document to lo
 
 function initialiseApp(_event: Event): void {
 
-    
+
 
     class Button {
         name: string;
@@ -18,11 +18,20 @@ function initialiseApp(_event: Event): void {
         styling: object;
         enabled: boolean = false;
 
+        generateElement(): HTMLElement {
+            let button: HTMLElement = document.createElement("button");
+            button.innerText = this.text;
+            button.className = "button";
+            button.addEventListener("click", () => { this.func() });
+
+            return button;
+        }
+
         toggle(): void {
             this.enabled = !this.enabled;
         }
 
-        constructor(name: string, text: string, func: Function, styling: object, enabled: boolean) {
+        constructor(name: string, text: string, styling: object, enabled: boolean, func: Function) {
             this.name = name;
             this.text = text;
             this.func = func;
@@ -31,30 +40,28 @@ function initialiseApp(_event: Event): void {
         }
     }
 
+    type PositionedWidget = {
+        x: number;
+        y: number;
+        widget: Button | string;
+    };
+
+
     class Menu {
-        name: string;
-        title!: string;
-        description!: string;
-        styling!: object;
-        buttons: {
-            button: Button;
-            x: number;
-            y: number;
-        }[] = [];
+        private name: string;
+        private title!: string;
+        private description!: string;
+        private styling!: object;
+        private widgets: (PositionedWidget)[];
+        // widgets: Array<GenericPos | ButtonPos> = [];
 
         generateElement(): HTMLElement {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
             let menuContainer: HTMLElement = document.createElement('div');
             menuContainer.classList.add("menuContainer");
 
             let menu: HTMLElement = document.createElement('div');
             menu.classList.add("actualMenu");
-=======
-            let menu: HTMLElement = document.createElement('table');
-            menu.classList.add("genericMenu");
->>>>>>> parent of 5ac295e (an attempt at flexbox, will revert back)
 
             // create text 
             let title: HTMLElement = document.createElement('div');
@@ -63,8 +70,8 @@ function initialiseApp(_event: Event): void {
             // create description
             let description: HTMLElement = document.createElement('div');
             description.innerText = this.description;
-            menu.appendChild(title);
-            menu.appendChild(description);
+            menuContainer.appendChild(title);
+            menuContainer.appendChild(description);
 
             let positionedWidgets: PositionedWidget[][] = [];
 
@@ -77,25 +84,31 @@ function initialiseApp(_event: Event): void {
 
 
             // find largest X in positionedWidgets
-            const largestX = this.widgets.flat().find(e => (Math.max(e.x) || e)).x || 0;
+            console.log(this.widgets)
+
+            const largestX = this.widgets.reduce(function(prev, current) {
+                return (prev.x > current.x) ? prev : current
+            }).x;
 
             // find largest Y in positionedWidgets
-            const largestY = this.widgets.flat().find(e => (Math.max(e.y) || e)).y || 0;
-
+            const largestY = this.widgets.reduce(function(prev, current) {
+                return (prev.y > current.y) ? prev : current
+            }).y;
 
             console.log([largestX, largestY]);
 
             // loop how many times we need to create a row
             for (let i = 1; i < positionedWidgets.length; i++) {
                 console.log(i)
-                let row: HTMLElement = document.createElement('tr');
+                let row: HTMLElement = document.createElement('div');
+                row.classList.add("row");
 
                 // // loop how many times we need to create a column in the row
 
                 for (let j = 1; j < (largestX + 1); j++) {
 
-                    let cell: HTMLElement = document.createElement('td');
-                    cell.classList.add(`x${j}`, `y${i}`);
+                    let cell: HTMLElement = document.createElement('div');
+                    cell.classList.add("column", `x${j}`, `y${i}`);
                     // if (positionedWidgets[i] && positionedWidgets[i][j]) {
                     //     console.log(i, j)
                     //     let currentWidget = positionedWidgets[i][j].widget;
@@ -129,6 +142,8 @@ function initialiseApp(_event: Event): void {
                             // create div and append text
                             let div: HTMLElement = document.createElement('div');
                             div.innerText = currentWidget;
+                            console.log(position)
+                            console.log(menu)
                             menu.querySelector(position).appendChild(div);
                         }
                     }
@@ -137,63 +152,47 @@ function initialiseApp(_event: Event): void {
             })
 
 
-            
 
 
-            document.querySelector("#menu").appendChild(menu);
+
+            menuContainer.appendChild(menu);
 
 
-=======
-            let menu: HTMLElement = document.createElement("div");
-            menu.innerHTML = this.name;
->>>>>>> parent of f733047 (got menus started)
+            document.querySelector("#menu").appendChild(menuContainer);
+
             return menu;
+
         }
 
-        constructor(name: string) {
-            this.name = "hello";
+        constructor(name: string, title: string, description: string, styling: object, widgets: PositionedWidget[]) {
+            this.name = name;
+            this.title = title;
+            this.description = description;
+            this.styling = styling;
+
+            this.widgets = widgets;
         }
     }
 
     var menus = {
-<<<<<<< HEAD
         main: new Menu("main", "Main Menu", "This is the main menu", {}, [
-            {
-                x: 9,
-                y: 1,
-                widget: "4, 1"
-            },
+            
             {
                 x: 1,
                 y: 1,
-                widget: "1, 1"
+                widget: new Button("start", "Start", {}, true, () => {})
             },
             {
-                x: 3,
-                y: 2,
-                widget: "3, 2"
-            },
-            {
-                x: 9,
-                y: 9,
-                widget: "9, 9"
-            },
-            // {
-            //     x: 1,
-            //     y: 1,
-            //     widget: "Star2tx"
-            // }
+                x: 2,
+                y: 1,
+                widget: new Button("start", "Start", {}, true, () => {})
+            }
         ]),
     };
 
-    
 
 
-=======
-        main: new Menu("Main"),
-    };
 
->>>>>>> parent of f733047 (got menus started)
     document.querySelector("#menu").appendChild(menus.main.generateElement());
 
 }

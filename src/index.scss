@@ -6,59 +6,50 @@ body {
     width: 100%;
 }
 
-
 @-webkit-keyframes Rainbow {
     0% {
-        background-position: 0% 50%
+        background-position: 0% 50%;
     }
 
     50% {
-        background-position: 100% 50%
+        background-position: 100% 50%;
     }
 
     100% {
-        background-position: 0% 50%
+        background-position: 0% 50%;
     }
 }
 
 @-moz-keyframes Rainbow {
     0% {
-        background-position: 0% 50%
+        background-position: 0% 50%;
     }
 
     50% {
-        background-position: 100% 50%
+        background-position: 100% 50%;
     }
 
     100% {
-        background-position: 0% 50%
+        background-position: 0% 50%;
     }
 }
 
 @keyframes Rainbow {
     0% {
-        background-position: 0% 50%
+        background-position: 0% 50%;
     }
 
     50% {
-        background-position: 100% 50%
+        background-position: 100% 50%;
     }
 
     100% {
-        background-position: 0% 50%
+        background-position: 0% 50%;
     }
 }
 
 body {
-<<<<<<< HEAD:src/index.css
-<<<<<<< HEAD:src/index.scss
     background: linear-gradient(270deg, #ff0000, #e9ff00, #2aff00, #00ffd9, #0023ff, #ff00e6);
-=======
-    /* background: linear-gradient(270deg, #ff0000, #e9ff00, #2aff00, #00ffd9, #0023ff, #ff00e6); */
->>>>>>> parent of f733047 (got menus started):src/index.css
-=======
-    background: linear-gradient(270deg, #ff0000, #e9ff00, #2aff00, #00ffd9, #0023ff, #ff00e6); 
->>>>>>> parent of 5ac295e (an attempt at flexbox, will revert back):src/index.scss
     background-size: 1200% 1200%;
 
     -webkit-animation: Rainbow 30s ease infinite;
@@ -67,15 +58,13 @@ body {
 
     display: block;
 }
-<<<<<<< HEAD:src/index.scss
 
-.genericMenu {
+#menu {
     font-family: "Segoe UI", sans-serif;
     background-color: white;
     padding: 20px;
     border-radius: 15px;
     margin: 0 auto;
-
 
     // vertically centre the menu
     position: absolute;
@@ -83,8 +72,24 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 
+    .actualMenu {
+        display: flex;
+        flex-direction: column;
+        // justify-content: space-around;
+        align-items: center;
+        flex: 1;
+        flex-grow: 1;
+        .row {
+            display: flex;
+            // flex-grow: 1;
+            // flex-shrink: 1;
+            // flex-basis: 0;
+            // flex: 1;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            flex: 1;
 
-<<<<<<< HEAD:src/index.css
             .column {
                 flex: 1;
                 button {
@@ -95,8 +100,3 @@ body {
         }
     }
 }
-=======
->>>>>>> parent of f733047 (got menus started):src/index.css
-=======
-}
->>>>>>> parent of 5ac295e (an attempt at flexbox, will revert back):src/index.scss
