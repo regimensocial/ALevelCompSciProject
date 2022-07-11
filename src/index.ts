@@ -73,10 +73,6 @@ function initialiseApp(_event: Event): void { // This is the function that will 
                 element.style[style] = this.styling[style];
             }
 
-            console.log(this.id)
-            console.log(document.getElementById(this.id))
-
-
             var newID = null;
             if (rerender && document.querySelectorAll("#" + this.id).length > 1) {
                 
@@ -91,7 +87,6 @@ function initialiseApp(_event: Event): void { // This is the function that will 
             if (rerender) {
                 var target: Element = document.querySelectorAll(`#${this.id}`)[0];
                 target.replaceWith(element);
-                console.log(element)
                 if (newID) this.id = newID;
                 return;
             }
@@ -276,9 +271,7 @@ function initialiseApp(_event: Event): void { // This is the function that will 
         className: "exampleWidget",
         events: { "click": () => { 
             exampleWidget.state.count = exampleWidget.state.count + 1; 
-            console.log(exampleWidget.state) 
             exampleWidget.content = (exampleWidget.state.count).toString();
-            console.log(exampleWidget.content)
         } },
         properties: {},
         styling: {},
